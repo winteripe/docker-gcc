@@ -11,6 +11,9 @@ RUN  mkdir -p /usr/bin/cmake \
     && /tmp/cmake-install.sh --skip-license --prefix=/usr/bin/cmake \
     && rm /tmp/cmake-install.sh
 
+RUN  echo "deb http://archive.debian.org/debian wheezy main" > /etc/apt/sources.list
+RUN  echo "deb http://archive.debian.org/debian-archive/debian-security/ wheezy updates/main" >> /etc/apt/sources.list
+
 RUN  apt-get update
 RUN  apt-get install libnuma-dev -y
 RUN  apt-get install unixodbc-dev -y
