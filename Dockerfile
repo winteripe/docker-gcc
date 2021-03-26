@@ -17,8 +17,8 @@ RUN  echo "deb http://archive.debian.org/debian-archive/debian-security/ wheezy 
 RUN  apt-get update
 RUN  apt-get install libnuma-dev -y
 RUN  apt-get install unixodbc-dev -y
-RUN  apt-get install distcc ccache -y
-
+RUN  apt-get install distcc ccache -y --force-yes
+ 
 ENV PATH="/usr/bin/cmake/bin:${PATH}"
 
 WORKDIR /app
