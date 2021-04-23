@@ -4,6 +4,8 @@ FROM gcc:$GCC_VERSION
 ARG CMAKE_VERSION=3.20.1
 ARG GTEST_VERSION=1.10.0
 
+ENV PATH="/usr/bin/cmake/bin:${PATH}"
+
 RUN wget https://github.com/Kitware/CMake/releases/download/v${CMAKE_VERSION}/cmake-${CMAKE_VERSION}-Linux-x86_64.sh \
     -q -O /tmp/cmake-install.sh \
     && chmod u+x /tmp/cmake-install.sh
@@ -23,12 +25,10 @@ RUN  apt-get install distcc ccache -y --force-yes
 RUN wget https://github.com/google/googletest/archive/release-${GTEST_VERSION}.tar.gz
 RUN tar xf release-${GTEST_VERSION}.tar.gz \
     && cd googletest-release-${GTEST_VERSION} \
-    && cmake -DBUILD_SHARED_LIBS=ON . \
+    && /usr/bin/cmake/bin/cmake -DBUILD_SHARED_LIBS=ON . \
     && make \
     && make install
 RUN cd .. \
     && rm -rf googletest-release-${GTEST_VERSION}
-
-ENV PATH="/usr/bin/cmake/bin:${PATH}"
 
 WORKDIR /app
