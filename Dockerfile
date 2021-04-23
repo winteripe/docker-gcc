@@ -22,11 +22,11 @@ RUN  apt-get install distcc ccache -y --force-yes
 
 RUN wget https://github.com/google/googletest/archive/release-${GTEST_VERSION}.tar.gz
 RUN tar xf release-${GTEST_VERSION}.tar.gz \
-    && pushd googletest-release-${GTEST_VERSION} \
+    && cd googletest-release-${GTEST_VERSION} \
     && cmake -DBUILD_SHARED_LIBS=ON . \
     && make \
     && make install
-RUN popd \
+RUN cd .. \
     && rm -rf googletest-release-${GTEST_VERSION}
 
 ENV PATH="/usr/bin/cmake/bin:${PATH}"
