@@ -25,7 +25,7 @@ RUN  apt-get install distcc ccache -y --force-yes
 RUN wget https://github.com/google/googletest/archive/release-${GTEST_VERSION}.tar.gz
 RUN tar xf release-${GTEST_VERSION}.tar.gz \
     && cd googletest-release-${GTEST_VERSION} \
-    && /usr/bin/cmake/bin/cmake -DBUILD_SHARED_LIBS=ON . \
+    && /usr/bin/cmake/bin/cmake . \
     && make \
     && make install
 RUN cd .. \
